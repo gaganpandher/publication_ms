@@ -1,0 +1,62 @@
+{% extends 'master.html' %}
+{% block content %}
+<div class="agileits-main">
+	<div class="w3top-nav">
+				<div class="w3top-nav-left">
+					<h1><a href="index.html">Publications</a></h1>
+				</div>
+				<div class="w3top-nav-right">
+					<ul>
+						<li><a href="/teacher/index" class="active">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="/teacher/gallery">Gallery</a></li>
+                        <li id="togg" onclick="myfunction" ><a  href="/teacher/signup">Register</a></li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+
+<div class="main">
+		<div class="w3l_main_grids">
+
+			<div class="w3l_main_grid1_w3ls w3l_main_grid1_w3ls_sub">
+				<h3>Login</h3>
+				<div class="w3l_main_grid1_w3ls_grid">
+					<form enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        {% if emailerror %}
+                        <p>Email is Incorrect</p>
+                        {% endif %}
+						<input type="email" name="email" placeholder="Email" required=" ">
+                        {% if activeerror %}
+                        <p>Account is not active yet</p>
+                        {% endif %}
+						<input type="password" name="password" placeholder="Password" required=" ">
+                        {% if passworderror %}
+                        <p>Password Is Incorrect</p>
+                        {% endif %}
+                        <div class="agile_remember">
+						<div class="agile_remember_left">
+							<div class="check">
+								<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>remember me</label>
+							</div>
+						</div>
+						<div class="agile_remember_right">
+							<a href="/teacher/forget">Forgot Password?</a>
+						</div>
+						<div class="clear"> </div>
+					</div>
+                        <input type="submit" value="Sign In">
+					</form>
+
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="clear"> </div>
+		</div>
+</div>
+
+{% endblock %}

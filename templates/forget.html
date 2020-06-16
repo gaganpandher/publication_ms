@@ -1,0 +1,42 @@
+{% extends 'master.html' %}
+{% block content %}
+<div class="agileits-main">
+	<div class="w3top-nav">
+				<div class="w3top-nav-left">
+					<h1><a href="index.html">Publications</a></h1>
+				</div>
+				<div class="w3top-nav-right">
+					<ul>
+						<li><a href="index.html" class="active">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Gallery</a></li>
+                        <li id="togg" onclick="myfunction" ><a  href="/teacher/signup">Register</a></li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+<div class="container d-flex justify-content-center">
+<div class="w3l_main_grid1_w3ls">
+				<h3>Password Reset</h3>
+				<div class="w3l_main_grid1_w3ls_grid">
+					<form  method="post">
+                        {% csrf_token %}
+                        <label><i class="fa fa-user"></i><strong> Email </strong></label>
+                        <input type
+						<input type="email" name="email" placeholder="Enter Your email" required=" ">
+                        {% if emailerror %}
+                        <p>Email Incorrect!</p>
+                        {% endif %}
+                        <div class="form-group">
+                        Enter your email and we will send you otp to get back into your account.
+
+                        </div>
+                        <div class="form-group d-flex justify-content-center">
+                         <button type="submit" class="btn btn-danger"><strong>Send Login OTP</strong></button>
+                        </div>
+					</form>
+
+				</div>
+			</div>
+</div>
+{% endblock %}

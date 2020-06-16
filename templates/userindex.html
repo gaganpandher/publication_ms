@@ -1,0 +1,55 @@
+{% extends 'master.html' %}
+{% block content %}
+<div class="agileits-main">
+	<div class="w3top-nav">
+				<div class="w3top-nav-left">
+					<h1><a href="">Publications</a></h1>
+				</div>
+				<div class="w3top-nav-right">
+
+					<ul>
+						<li><a href="/user/index" class="active">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="/user/gallery">Gallery</a></li>
+						<li><a  href="/teacher/login/" >Login</a></li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+</div>
+<div class="clear"></div>
+<div class="header-bg-btm">
+<div class="wrap">
+	<div class="clear"></div>
+</div>
+</div>
+<div class="main">
+		<div class="w3l_main_grids">
+
+
+	<div class="contianer-fluid " max-width="720px" style="padding:100px">
+
+<div class="card-deck d-flex  row row-cols-1 row-cols-md-3">
+{% for i in paperinfo %}
+
+ <div class="col mb-4 ">
+    <div class="card mb-4 border border-dark">
+      <img src="/assets/images/pdf.jpg" class="card-img-top"  alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Topic: {{ i.paper_description }}</h5>
+		  <p class="card-text"><a class="text-muted">Author: {{ i.author_name }}</a></p>
+		  <a href="{{ paper.paper_upload.url }}" class="btn btn-dark btn-sm" target="_blank"> Show Document</a>
+
+      </div>
+    </div>
+  </div>
+
+
+		{% endfor %}
+
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'master.html' %}
+{% block content %}
+<div class="agileits-main">
+	<div class="w3top-nav">
+				<div class="w3top-nav-left">
+					<h1><a href="index.html">Publications</a></h1>
+				</div>
+				<div class="w3top-nav-right">
+					<ul>
+						<li><a href="/teacher/index" class="active">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="/teacher/gallery">Gallery</a></li>
+						<li><a  href="/teacher/useraccount/" >My Account</a></li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+</div>
+<div class="main">
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+               {% csrf_token %}
+    <div class="row" style="padding-top:60px;">
+    <div class="col-md-3" style="border:1px solid grey;">
+    <div class="d-flex justify-content-center" style="padding-top:20px;">
+     <img src="/media/{{profile.user_image1}}" height="130px" width="130px" style="margin-bottom:40px;border:1px solid black;border-radius:50%;"/>
+    </div>
+        {% if profile %}
+        <div class="d-flex justify-content-center">
+        <input type="text" name="name"   value={{profile.teacher_name}} readonly="True" style="border:none;">
+        </div>
+        <hr>
+        {% endif %}
+
+
+        <div class="" name="account" style="padding-left:40px;">
+            <a href="/teacher/profile/" style="color:black;text-decoration:none;">Account</a>
+        </div>
+        <hr>
+        <div class="" name="Profileverify" style="padding-left:40px;">
+            <a href="/teacher/documentlist/" style="color:black;text-decoration:none;">My Documents</a>
+        </div>
+        <hr>
+
+
+    </div>
+    <div class="col-md-9" style="border:1px solid grey;">
+        <div class="form-layout">
+         <h3 class="d-flex justify-content-center" style="padding:20px;">My Documents</h3><hr>
+
+            <div class="row" style="padding-top:10px;">
+                    <div class="col-md-11" style="border:1px solid grey;margin-left:35px;margin-bottom:35px;">
+
+              <div class="form-group">
+                  <div class="form-group d-flex justify-content-left" style="padding-top:50px;">
+                     <button  class="btn btn-light" class="form-control"  ><strong><a href="/teacher/document">Upload new Paper</a></strong></button>
+
+                </div>
+                  <div class="table-responsive">
+    <table class="table table-light table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Paper Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Uploaded Paper</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for paper in documents %}
+            <tr >
+                <td>{{ paper.paper_id }}</td>
+                <td>{{ paper.paper_description }}</td>
+                <td>{{ paper.author_name }}</td>
+                <td>
+                    <a href="{{ paper.paper_upload.url }}" class="btn btn-primary btn-sm" target="_blank"> Show Document</a>
+                   </td>
+                <td>
+                <a href="/teacher/edit/" class="btn btn-info btn-sm">Edit</a><a> </a><a href="/teacher/delete" class="btn btn-primary btn-sm">Delete</a></td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+                  </div>
+              </div>
+        </div>
+    </div>
+        </div>
+    </div>
+    </div>
+    </form>
+
+</div>
+
+
+</div>
+{% endblock %}

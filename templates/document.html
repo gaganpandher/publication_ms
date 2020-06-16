@@ -1,0 +1,122 @@
+{% extends 'master.html' %}
+{% block content %}
+<div class="agileits-main">
+	<div class="w3top-nav">
+				<div class="w3top-nav-left">
+					<h1><a href="index.html">Publications</a></h1>
+				</div>
+				<div class="w3top-nav-right">
+					<ul>
+						<li><a href="/teacher/index" class="active">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="/teacher/gallery">Gallery</a></li>
+						<li><a  href="/teacher/useraccount/" >My Account</a></li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+</div>
+<div class="main">
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+               {% csrf_token %}
+    <div class="row" style="padding-top:60px;">
+    <div class="col-md-3" style="border:1px solid grey;">
+    <div class="d-flex justify-content-center" style="padding-top:20px;">
+     <img src="/media/{{profile.user_image1}}" height="130px" width="130px" style="margin-bottom:40px;border:1px solid black;border-radius:50%;"/>
+    </div>
+        {% if profile %}
+        <div class="d-flex justify-content-center">
+        <input type="text" name="name"   value={{profile.teacher_name}} readonly="True" style="border:none;">
+        </div>
+        <hr>
+        {% endif %}
+
+        <hr>
+        <div class="" name="account" style="padding-left:40px;">
+            <a href="/teacher/profile/" style="color:black;text-decoration:none;">Account</a>
+        </div>
+        <hr>
+        <div class="" name="Profileverify" style="padding-left:40px;">
+            <a href="/teacher/documentlist/" style="color:black;text-decoration:none;">My Documents</a>
+        </div>
+        <hr>
+
+
+    </div>
+    <div class="col-md-9" style="border:1px solid grey;">
+        <div class="form-layout">
+         <h3 class="d-flex justify-content-center" style="padding:20px;">My Documents</h3><hr>
+
+            <div class="row" style="padding-top:10px;">
+                    <div class="col-md-11" style="border:1px solid grey;margin-left:35px;margin-bottom:35px;">
+
+              <div class="form-group">
+            <div>
+                        <div class="row" style="margin:10px;">
+                            <div class="col-md-4">
+                        <label style="margin-left:9px;">Paper Id</label>
+                            </div>
+                            <div class="col-md-8">
+                        <input type="text" style="width:240px;background-color:white;" name="paper_id" class="form-control"   >
+                            </div>
+                        </div>
+                </div>
+                <div>
+                        <div class="row" style="margin:10px;">
+                            <div class="col-md-4">
+                        <label style="margin-left:9px;">Author</label>
+                            </div>
+                            <div class="col-md-8">
+                        <input type="text" style="width:240px;background-color:white;" name="author_name" class="form-control"   >
+                            </div>
+                        </div>
+                </div>
+                  <div>
+                        <div class="row" style="margin:10px;">
+                            <div class="col-md-4">
+                        <label style="margin-left:9px;">Title Of Paper</label>
+                            </div>
+                            <div class="col-md-8">
+                        <input type="text" style="width:240px;background-color:white;" name="paper_description" class="form-control"  >
+                            </div>
+                        </div>
+                </div>
+
+                <div>
+                    <div class="row" style="margin:10px;">
+                            <div class="col-md-4">
+                <label style="margin-left:9px;">Select File</label>
+                            </div>
+                <div class="col-md-8">
+                    <input type="file" name="paper_upload" class="form_control" style="margin-top:10px;border:1px solid black;width:240px;height:200";>
+                </div>
+                </div>
+                    </div>
+
+
+               <div class="modal-footer d-flex justify-content-center">
+                         <button type="submit" class="btn btn-info" name="">UPLOAD FILE</button>
+                      </div>
+
+
+
+
+              </div>
+        </div>
+    </div>
+
+        </div>
+
+
+
+    </div>
+    </div>
+    </form>
+
+</div>
+
+
+</div>
+{% endblock %}

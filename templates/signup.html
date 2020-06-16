@@ -1,0 +1,99 @@
+{% extends 'master.html' %}
+{% block content %}
+<div class="agileits-main">
+	<div class="w3top-nav">
+				<div class="w3top-nav-left">
+					<h1><a href="index.html">Publications</a></h1>
+				</div>
+				<div class="w3top-nav-right">
+					<ul>
+						<li><a href="/teacher/index" class="active">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="/teacher/gallery">Gallery</a></li>
+                        <li ><a  href="/teacher/login">Login</a></li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+<div class="main">
+
+		<div class="w3l_main_grids">
+			<div class="w3l_main_grid1_w3ls">
+				<h3>Register</h3>
+				<div class="w3l_main_grid1_w3ls_grid">
+					<form enctype="multipart/form-data" method="post" onsubmit="return validate()">
+						{%csrf_token%}
+						 {% if roledata %}
+
+						<select class="custom-select form-control" name="role_id" id="inputGroupSelect01" style="background-color:transparent;border:2px solid rgba(242,186,46,1);background-color:rgba(0, 0, 0, 0.42);color:white;">
+							 <option selected>Select Your Role</option>
+							{% for i in roledata %}
+							<option value="{{ i.role_id }}">{{ i.role_name }}</option>
+						{% endfor %}
+						</select>
+						{% endif %}
+						<input type="text" name="teacher_name" placeholder="Name" required=" " id="teacher_name">
+                        <input type="email" name="email" placeholder="Email" required=" " id="email">
+                        <input type="text" name="mobile" placeholder="Contact" required=" " id="mobile">
+						<input type="password" name="password" placeholder="Password" required=" " id="password">
+						<input type="password" name="cpass" placeholder="Confirm Password" required=" " id="cpass">
+
+
+						<input type="submit" value="Sign Up">
+					</form>
+					<script>
+    					function validate(){
+							var name = document.getElementById("name").value;
+							var email = document.getElementById("email").value;
+							var password = document.getElementById("password").value;
+							var cpass = document.getElementById("cpass").value;
+							var contact = document.getElementById("contact").value;
+							var regemail=/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
+							if (name != "" && email != "" && password != "" && cpass != "" && contact != "") {
+								if (email.match(regemail)) {
+									if (password.length >= 8 && password.length <= 16) {
+										if (password == cpass) {
+											if (contact.length == 10) {
+
+											}
+											else {
+												alert("number is invalid");
+												return false;
+											}
+
+										}
+										else {
+											alert("password did not match!");
+											return false;
+										}
+
+									}
+									else {
+										alert("enter between 8 to 16 characters");
+										return false;
+									}
+
+								}
+								else {
+									alert("enter valid email");
+									return false;
+								}
+
+							}
+							else{
+								alert("please fill all fields");
+								return false;
+							}
+						}
+						</script>
+
+					<h5>Already a member? <a href="/teacher/login">Sign In</a></h5>
+				</div>
+			</div>
+			<div class="clear"> </div>
+		</div>
+
+	</div>
+
+</div>
+{% endblock %}
