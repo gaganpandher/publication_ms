@@ -238,9 +238,9 @@ def documentList(request):
     else:
         auth, msg = auth
         if auth == False:
-            return render(request,"login.html")#HttpResponse("WrongUser")
+            return HttpResponse("WrongUser")
         elif auth == False:
-            return render(request,"login.html")#HttpResponse('Login first')
+            return HttpResponse('Login first')
 
 
 def delete(request):
@@ -260,10 +260,10 @@ def delete(request):
 def edit(request):
     auth = author.authorize(request.session['Authentication'], request.session["role"], 1)
     if auth == True:
-        #email = request.session["email"]
+        email = request.session["email"]
         #paper_id=request.session["paper_id"]
-        #data1 = FacultyInfo.objects.get(email=email)
-        data2 = PaperUpload.objects.filter(paper_id)
+        data1 = FacultyInfo.objects.get(email=email)
+        data2 = PaperUpload.objects.get(paper_id)
         data = UserRole.objects.all()
         if request.method == "POST":
             #form = PaperUploadForm(request.POST, request.FILES)
@@ -291,9 +291,9 @@ def edit(request):
     else:
         auth, msg = auth
         if auth == False:
-            return render(request, "login.html")  # HttpResponse("WrongUser")
+            return  HttpResponse("WrongUser")
         elif auth == False:
-            return render(request, "login.html")  # HttpResponse('Login first')
+            return HttpResponse('Login first')
 
 
 def logout(request):
